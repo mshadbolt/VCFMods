@@ -18,24 +18,19 @@ for record in vcf_reader:
     SNPID = str(record.ID) + '_' + str(record.POS)
     PosDict[SNPID] = record.POS
 
-PosDictMod = PosDict.copy()
-
-for key in PosDictMod:
+for key in PosDict:
     tag_id = key.split("_")[0]
     if StrandDict[tag_id] == '+':
-        PosDictMod[key] += 1
+        PosDict[key] += 1
     else:
-        PosDictMod[key] -= 1
+        PosDict[key] -= 1
 
 vcf_reader2= vcf.Reader(open(vcfname,'r'))
 modVcfname = vcfname.split(".")[0] + "-mod.vcf"
 vcf_writer = vcf.Writer(open(modVcfname, 'w'), vcf_reader2)
 for record in vcf_reader2:
     tag_id = str(record.ID) + '_' + str(record.POS)
-    record.POS = PosDictMod[tag_id]
+    record.POS = PosDict[tag_id]
     vcf_writer.write_record(record)
     
 print "done!"
-
-
-    
