@@ -1,5 +1,15 @@
+#This script modifies a VCF outputted by Stacks 1.19 to the correct BP position
+#This version of Stacks outputs a physical position that is + 1 for positive
+#strand tags and - 1 for negative strand tags.
+#The script should be run from a directory with a .csv file exported from the
+#MySQL catalog_tags table. The csv file should contain which 2 columns: 
+#Column 1 is a list of Catalog Tag IDs
+#Column 2 is a '+' or '-'
+#The script automatically detects a csv file in the working directory and uses it
+#The use is prompted for the name of the vcf file to be modified.
+
 import vcf, os, csv, glob, sys
-os.chdir("/Users/marionshadbolt/Dropbox/000_Masters/BINF90002-Research-Project/Analysis/PythonDev/")
+#os.chdir("/Users/marionshadbolt/Dropbox/000_Masters/BINF90002-Research-Project/Analysis/PythonDev/")
 filename = glob.glob('*.csv')
 
 #read in csv with info on + or - strand information, two columns tag_id, strand
