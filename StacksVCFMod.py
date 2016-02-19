@@ -9,7 +9,6 @@
 #The use is prompted for the name of the vcf file to be modified.
 
 import vcf, os, csv, glob, sys
-#os.chdir("/Users/marionshadbolt/Dropbox/000_Masters/BINF90002-Research-Project/Analysis/PythonDev/")
 filename = glob.glob('*.csv')
 
 #read in csv with info on + or - strand information, two columns tag_id, strand
